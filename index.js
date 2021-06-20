@@ -1,8 +1,9 @@
-const RegistryCommand = require('./RegistryCommand')
-const InfoUser = require('./cmd/Infouser')
-
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+
+const RegistryCommand = require('./cmd/RegistryCommand')
+const InfoUser = require('./cmd/Infouser')
+const Ping = require('./cmd/Ping')
 const ReaderToken = require('./ReaderToken');
 
 bot.on('ready', () => {
@@ -14,6 +15,7 @@ const reg = new RegistryCommand();
 
 function loadCommands() {
     reg.add(new InfoUser());
+    reg.add(new Ping())
 }
 
 bot.on('message', message => {
@@ -21,4 +23,4 @@ bot.on('message', message => {
 });
 
 const reader = new ReaderToken();
-reader.readToken(bot);
+reader.readTokenAndBotLogin(bot);
