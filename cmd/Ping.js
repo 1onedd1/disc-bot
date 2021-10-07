@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 
-module.exports = class Infouser {
+module.exports = class Ping {
     label = "!ping";
 
     run = (message) => {
@@ -10,6 +10,6 @@ module.exports = class Infouser {
             .setColor("RED")
             .addField("username", user.username, true)
 
-        message.channel.send(embed);
+            message.channel.send(embed);
     }
 };

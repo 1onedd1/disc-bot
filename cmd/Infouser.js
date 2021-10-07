@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 
-module.exports = class Infouser {
+module.exports = class InfoUser {
     label = "!info";
 
     run = (message) => {

@@ -1,26 +1,21 @@
 const Discord = require('discord.js');
+const ReaderToken = require("./ReaderToken")
+const CommandManager = require('./cmd/CommandManager');
+const BotManager = require('./BotManager');
+
 const bot = new Discord.Client();
+const rt = new ReaderToken();
+const cm = new CommandManager()
+const bm = new BotManager()
 
-const RegistryCommand = require('./cmd/RegistryCommand')
-const InfoUser = require('./cmd/Infouser')
-const Ping = require('./cmd/Ping')
-const ReaderToken = require('./ReaderToken');
+init();
 
-bot.on('ready', () => {
-	console.log('Бот запустился', bot.user.tag)
-    loadCommands();
-});
+function init() {
+    var token = rt.readToken();
+    
+    bm.registerEvents(bot);
 
-const reg = new RegistryCommand();
-
-function loadCommands() {
-    reg.add(new InfoUser());
-    reg.add(new Ping())
+    bot.login(token);
 }
 
-bot.on('message', message => {
-    reg.get(message);
-});
 
-const reader = new ReaderToken();
-reader.readTokenAndBotLogin(bot);

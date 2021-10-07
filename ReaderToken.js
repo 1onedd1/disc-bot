@@ -1,14 +1,9 @@
-fs = require('fs');
+const fs = require('fs');
 
 module.exports = class ReaderToken {
-    readTokenAndBotLogin(bot) {
-        fs.readFile('./resources/token.txt', (err, data) => {
-            if (err) {
-                return console.error(`Error on reading token.txt: ${err}`);
-            }
+    readToken() {
+        let content = fs.readFileSync('./resources/token.txt', 'utf8');
 
-            let token = data.toString();
-            bot.login(token)
-        });
+        return content;
     }
 }
