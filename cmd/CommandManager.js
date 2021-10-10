@@ -13,7 +13,8 @@ module.exports = class CommandManager{
 
     get(message) {
         for(var i = 0; i < this._registry.length; i++) {
-            if(this._registry[i].label == message.content) {
+            let length = this._registry[i].label.length;
+            if(this._registry[i].label == message.content || message.content.substring(0, length) === this._registry[i].label) {
                 this._registry[i].run(message);
                 break;
             }
