@@ -1,20 +1,26 @@
 const Discord = require('discord.js');
-const ReaderToken = require("./ReaderToken")
+const Reader = require("./Reader")
 const CommandManager = require('./cmd/CommandManager');
 const BotManager = require('./BotManager');
-const Anagramm = require('./chat_game/Anagramm');
+const Anagramm = require('./chat_game/AnagrammGame');
 
 const bot = new Discord.Client();
-const rt = new ReaderToken();
+const rt = new Reader();
 const cm = new CommandManager()
 const bm = new BotManager()
-const agm = new Anagramm();
 
 init();
 
 function init() {
-    var token = rt.readToken();
+    var token = rt.read('./resources/token.txt');
+    var words_Anagramm = rt.read('./resources/chat_game/anagramm/words.json');
 
+    var object_words = JSON.parse(words_Anagramm);
+
+    const agm = new Anagramm(object_words['words']);
+    
+    cm.add(agm);
+    bm.provideCommandManager(cm);
     bm.registerEvents(bot);
 
     bot.login(token);

@@ -1,7 +1,7 @@
-const InfoUser = require('./InfoUser')
-const Ping = require('./Ping')
-const RandValue = require("./RandValue")
-const Help = require("./Help")
+const InfoUser = require('./InfoUserCommand')
+const Ping = require('./PingCommand')
+const RandValue = require("./RandValueCommand")
+const Help = require("./HelpCommand")
 
 module.exports = class CommandManager{
     _registry = new Array();
