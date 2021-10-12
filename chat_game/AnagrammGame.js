@@ -1,19 +1,31 @@
-const Command = require('../cmd/Command');
 const Discord = require('discord.js')
 
+module.exports = class Anagramm {
+    static words = Array.of("");
+    static currentCorrectWord = "";
+    static currentShakedWord = "";
+    static hasAnswer = false;
+    static isStart = false;
 
-module.exports = class Anagramm extends Command {
-    words = Array.of("");
-    channel = "anagramm";
-    currentWord = "";
-
-    constructor(words) {
-        super();
-        this.words = words;
-        this.currentWord = this.takeRandomWord();
+    static start() {
+        this.isStart = true;
+        this.currentCorrectWord = this.takeRandomWord();
+        this.currentShakedWord = this.shake(this.currentCorrectWord);
     }
 
-    takeRandomWord() {
+    static stop() {
+        this.isStart = false;
+    }
+
+    static giveAnswer(answer) {
+        if(answer == this.currentCorrectWord) this.hasAnswer = true;
+    }
+
+    static provideShakedWord() {
+        return this.currentShakedWord;
+    }
+
+    static takeRandomWord() {
         var random = Math.round(Math.random() * this.words.length);
 
         if(random == this.words.length) random = random - 1;
@@ -21,17 +33,7 @@ module.exports = class Anagramm extends Command {
         return this.words[random];
     }
 
-    run = (message) => {
-        if(this.currentWord == message.content) {
-            message.channel.send("you're right. ok. now a new word: ");
-
-            this.currentWord = this.takeRandomWord();
-            let shakeWord = this.shake(this.currentWord);
-            message.channel.send(shakeWord);
-        }
-    }
-
-    shake(word) {
+    static shake(word) {
         var result = "";
         
         if((typeof word) === "string") {
@@ -51,7 +53,11 @@ module.exports = class Anagramm extends Command {
         return result;
     }
 
-    getRandomArbitrary(min, max) {
+    static getRandomArbitrary(min, max) {
         return Math.random() * (max - min) + min;
+    }
+
+    static setWords(words) {
+        this.words = words;
     }
 } 

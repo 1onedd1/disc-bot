@@ -16,10 +16,7 @@ function init() {
     var words_Anagramm = rt.read('./resources/chat_game/anagramm/words.json');
 
     var object_words = JSON.parse(words_Anagramm);
-
-    const agm = new Anagramm(object_words['words']);
-    
-    cm.add(agm);
+    Anagramm.setWords(object_words['words']);
     bm.provideCommandManager(cm);
     bm.registerEvents(bot);
 

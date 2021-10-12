@@ -2,6 +2,7 @@ const InfoUser = require('./InfoUserCommand')
 const Ping = require('./PingCommand')
 const RandValue = require("./RandValueCommand")
 const Help = require("./HelpCommand")
+const AnagrammCommand = require('./AnagrammCommand');
 
 module.exports = class CommandManager{
     _registry = new Array();
@@ -11,6 +12,7 @@ module.exports = class CommandManager{
         this._registry.push(new InfoUser());
         this._registry.push(new Ping())
         this._registry.push(new RandValue())
+        this._registry.push(new AnagrammCommand());
     }
 
     get(message) {
