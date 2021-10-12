@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
+const Command = require('./Command');
 
-module.exports = class Ping {
+module.exports = class Ping extends Command {
     label = "!ping";
 
     run = (message) => {

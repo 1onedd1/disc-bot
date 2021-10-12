@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
+const Command = require('./Command');
 
-module.exports = class InfoUser {
+module.exports = class InfoUser extends Command {
     label = "!info";
 
     run = (message) => {
