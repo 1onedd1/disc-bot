@@ -8,6 +8,7 @@ module.exports = class Anagramm {
     static isStart = false;
 
     static start() {
+        
         this.isStart = true;
         this.currentCorrectWord = this.takeRandomWord();
         this.currentShakedWord = this.shake(this.currentCorrectWord);
