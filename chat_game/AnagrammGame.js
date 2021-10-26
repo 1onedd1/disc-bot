@@ -8,7 +8,6 @@ module.exports = class Anagramm {
     static isStart = false;
 
     static start() {
-        
         this.isStart = true;
         this.currentCorrectWord = this.takeRandomWord();
         this.currentShakedWord = this.shake(this.currentCorrectWord);
@@ -41,7 +40,7 @@ module.exports = class Anagramm {
             var charWordArray = Array.from(word);
 
             for(var i = 0; i < word.length; i++) {
-                var randomPosition = Math.round(this.getRandomArbitrary(i, word.length - 1));
+                var randomPosition = Math.round(this.getRandomArbitrary(this.getRandomArbitrary(0, word.length - 1), word.length - 1));
 
                 var tempChar = charWordArray[i];
                 charWordArray[i] = charWordArray[randomPosition];
