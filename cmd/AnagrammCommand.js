@@ -8,15 +8,20 @@ module.exports = class Anagramm extends Command {
 
     run = (message) => {
         let a = message.content.split(" ");
-        
-        if(a[1] == "start") {
-            AnagrammGame.start();
-            message.channel.send(AnagrammGame.provideShakedWord());
-        }
+        let subCommand = a[1];
 
-        if(a[1] == "stop") {
-            message.reply("game was stoped.");
-            AnagrammGame.stop();
+        switch (subCommand) {
+            case "start":
+                AnagrammGame.start();
+                message.channel.send(AnagrammGame.provideShakedWord());
+                break;
+        
+            case "stop":
+                AnagrammGame.stop();
+                message.reply("game was stoped.");
+
+            default:
+                break;
         }
 
         if(AnagrammGame.currentCorrectWord == message.content && AnagrammGame.isStart) {
