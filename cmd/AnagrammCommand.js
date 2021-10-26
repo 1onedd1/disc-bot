@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 const Command = require('./Command');
 const AnagrammGame = require('../chat_game/AnagrammGame');
 

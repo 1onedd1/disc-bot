@@ -1,5 +1,3 @@
-const Discord = require('discord.js')
-
 module.exports = class Anagramm {
     static words = Array.of("");
     static currentCorrectWord = "";
